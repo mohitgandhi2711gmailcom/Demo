@@ -1,7 +1,11 @@
 package com.example.demo.model
 
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movie_results")
 data class MovieResult(
     @SerializedName("overview")
     val overview: String = "",
@@ -25,8 +29,9 @@ data class MovieResult(
     val popularity: Double = 0.0,
     @SerializedName("vote_average")
     val voteAverage: Double = 0.0,
+    @PrimaryKey
     @SerializedName("id")
-    val id: Int = 0,
+    val movieId: Int = 0,
     @SerializedName("adult")
     val adult: Boolean = false,
     @SerializedName("vote_count")

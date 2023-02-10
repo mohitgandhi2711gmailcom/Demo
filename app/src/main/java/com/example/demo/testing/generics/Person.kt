@@ -1,4 +1,4 @@
-package com.example.demo.generics
+package com.example.demo.testing.generics
 
 class Person<T>(private var value: T?) {
 

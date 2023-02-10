@@ -1,9 +1,9 @@
 package com.example.demo.utils
 
 import android.util.Log
-import com.example.demo.generics.Person
-import com.example.demo.enum_sealed.Directions
-import com.example.demo.enum_sealed.ShapeSealedClass
+import com.example.demo.testing.generics.Person
+import com.example.demo.testing.enum_sealed.Directions
+import com.example.demo.testing.enum_sealed.ShapeSealedClass
 import com.example.demo.model.Employee
 
 object TestingUtils {
