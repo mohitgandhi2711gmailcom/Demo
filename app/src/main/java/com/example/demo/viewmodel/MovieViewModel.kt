@@ -8,6 +8,7 @@ import com.example.demo.extras.ResponseSealedClass
 import com.example.demo.model.MovieModel
 import com.example.demo.model.MovieResult
 import com.example.demo.utils.RetrofitInstance
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -18,20 +19,18 @@ class MovieViewModel : ViewModel() {
     fun getPopularMovies() {
         NetworkResult.Loading<Boolean>(true)
         viewModelScope.launch {
-            movieLiveData.postValue(getMovies())
+            getMovies()
         }
     }
 
-    private suspend fun getMovies(): ResponseSealedClass<out Any> {
-        val async = viewModelScope.async {
+    private fun getMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                val resp = RetrofitInstance.api.getPopularMovies("69d66957eebff9666ea46bd464773cf0")
-                    .execute()
-                return@async ResponseSealedClass.Success(resp.body()!!.results!!)
-            } catch (e: Exception) {
-                return@async ResponseSealedClass.Failure<String>(e.localizedMessage!!)
+                val resp = RetrofitInstance.api.getPopularMovies("69d66957eebff9666ea46bd464773cf0").execute()
+                 movieLiveData.postValue(ResponseSealedClass.Success(resp.body()!!.results!!))
+            } catch (exception: Exception) {
+                 movieLiveData.postValue(ResponseSealedClass.Failure<String>(exception.toString()))
             }
         }
-        return async.await()
     }
 }
