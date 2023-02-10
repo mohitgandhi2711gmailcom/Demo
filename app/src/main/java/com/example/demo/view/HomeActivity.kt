@@ -27,14 +27,15 @@ class HomeActivity : AppCompatActivity() {
         prepareRecyclerView()
         viewModel.getPopularMovies()
         viewModel.movieLiveData.observe(this) { movieData: ResponseSealedClass<out Any> ->
-            Toast.makeText(this, "Observed", Toast.LENGTH_LONG).show()
-            if (movieData is ResponseSealedClass.Success) {
-                Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
-                movieData.data.run {
+            when (movieData) {
+                is ResponseSealedClass.Success -> movieData.data.run {
                     movieAdapter.setMovieList(movieData.data as List<MovieResult>)
                 }
-            } else {
-                Toast.makeText(this, "Exception", Toast.LENGTH_LONG).show()
+                is ResponseSealedClass.Failure -> Toast.makeText(
+                    this,
+                    movieData.exception,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
