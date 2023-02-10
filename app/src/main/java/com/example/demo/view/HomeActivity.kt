@@ -6,8 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.demo.api.ResponseSealedClass
 import com.example.demo.databinding.ActivityTempBinding
-import com.example.demo.extras.ResponseSealedClass
 import com.example.demo.model.MovieResult
 import com.example.demo.view.adapters.MovieAdapter
 import com.example.demo.viewmodel.MovieViewModel

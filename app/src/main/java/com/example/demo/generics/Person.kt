@@ -1,4 +1,4 @@
-package com.example.demo.api
+package com.example.demo.generics
 
 class Person<T>(private var value: T?) {
 

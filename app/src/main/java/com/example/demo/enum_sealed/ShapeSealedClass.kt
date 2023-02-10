@@ -1,4 +1,4 @@
-package com.example.demo.extras
+package com.example.demo.enum_sealed
 
 sealed class ShapeSealedClass {
     class Circle(private var radius: Int) : ShapeSealedClass() {

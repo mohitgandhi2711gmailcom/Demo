@@ -1,4 +1,4 @@
-package com.example.demo.extras
+package com.example.demo.enum_sealed
 
 import android.util.Log
 
