@@ -21,6 +21,28 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         buildConfigField "String", "API_KEY", "\"${properties.getProperty('DEFAULT_API_KEY')}\""
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
+        /*kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }*/
+
+        kapt {
+          arguments {
+              arg("room.schemaLocation", "$projectDir/schemas".toString())
+       }}
+
+        sourceSets {
+            debug.assets.srcDirs += files("$projectDir/schemas".toString())
+        }
     }
 
     buildTypes {
@@ -107,5 +129,8 @@ dependencies {
     /*---Rooom Data Base---*/
     implementation 'androidx.room:room-runtime:2.5.0'
     kapt 'androidx.room:room-compiler:2.5.0'
+    annotationProcessor 'androidx.room:room-compiler:2.5.0'
     implementation 'androidx.room:room-ktx:2.5.0'
+    implementation 'androidx.room:room-rxjava2:2.5.0'
+    androidTestImplementation 'androidx.room:room-testing:2.5.0'
 }

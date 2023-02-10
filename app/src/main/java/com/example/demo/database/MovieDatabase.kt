@@ -1,15 +1,16 @@
 package com.example.demo.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.example.demo.helper.DataConverter
 import com.example.demo.model.MovieModel
 import com.example.demo.model.MovieResult
 
-@Database(entities = [MovieModel::class, MovieResult::class], version = 1)
+@Database(
+    entities = [MovieModel::class, MovieResult::class], version = 3,
+    autoMigrations = [AutoMigration(from = 2, to = 3)],
+    exportSchema = true
+)
 @TypeConverters(DataConverter::class)
 abstract class MovieDatabase : RoomDatabase() {
 
