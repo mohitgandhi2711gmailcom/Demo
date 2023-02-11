@@ -20,9 +20,7 @@ data class MovieModel(
 
     @SerializedName("total_Results")
     val totalResults: Int = 0,
-
-    val newColumn: String = "Mohit"
 ) {
-    constructor(movieModelId: Int, page: Int, totalPages: Int, totalResults: Int, newColumn: String)
-            : this(movieModelId, page, totalPages, null, totalResults, newColumn)
+    constructor(movieModelId: Int, page: Int, totalPages: Int, totalResults: Int)
+            : this(movieModelId, page, totalPages, null, totalResults)
 }
