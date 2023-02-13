@@ -1,6 +1,5 @@
 package com.example.demo.viewmodel
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,12 +29,6 @@ class MovieViewModel : ViewModel() {
             } catch (exception: Exception) {
                 movieLiveData.postValue(ResponseSealedClass.Failure<String>(exception.toString()))
             }
-        }
-    }
-
-    fun doAction(view: View) {
-        viewModelScope.launch(Dispatchers.IO) {
-            FlowTesting.setupFlow()
         }
     }
 }

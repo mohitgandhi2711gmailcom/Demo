@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.demo.api.ResponseSealedClass
 import com.example.demo.database.MovieDatabase
@@ -14,6 +15,7 @@ import com.example.demo.databinding.ActivityHomeBinding
 import com.example.demo.helper.DBHelper
 import com.example.demo.model.MovieModel
 import com.example.demo.model.MovieResult
+import com.example.demo.testing.flow.FlowTesting
 import com.example.demo.view.adapters.MovieAdapter
 import com.example.demo.viewmodel.MovieViewModel
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +36,17 @@ class HomeActivity : AppCompatActivity() {
         prepareRecyclerView()
         showAPIData()
         observeChangesInDB()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.actionBtn.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+            val setupFlow = FlowTesting.setupFlow()
+                setupFlow.collect{
+                    Log.e("Mohit", "$it")
+                }
+            } }
     }
 
     private fun observeChangesInDB() {

@@ -19,5 +19,4 @@ object FlowTesting {
             }
         }.flowOn(Dispatchers.Main)
     }
-
 }
