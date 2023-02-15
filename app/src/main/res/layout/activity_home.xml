@@ -28,12 +28,22 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movies"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@+id/action_btn"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_btn"
             tools:listitem="@layout/movie_layout" />
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/action_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

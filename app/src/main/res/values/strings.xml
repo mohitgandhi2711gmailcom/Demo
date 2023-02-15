@@ -7,5 +7,10 @@
     <string name="button_text">Login</string>
     <string name="movie_name">Movie Name</string>
     <string name="do_action">Do Action</string>
+    <string name="fragment_one">Fragment One</string>
+    <string name="fragment_two">Fragment Two</string>
+    <string name="fragment_five">Fragment Five</string>
+    <string name="fragment_four">Fragment Four</string>
+    <string name="fragment_three">Fragment Three</string>
 
 </resources>
