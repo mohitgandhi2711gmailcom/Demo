@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.demo.api.ResponseSealedClass
 import com.example.demo.database.MovieDatabase
 import com.example.demo.databinding.ActivityHomeBinding
@@ -33,9 +34,9 @@ class HomeActivity : AppCompatActivity() {
         installSplashScreen()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        prepareRecyclerView()
-//        showAPIData()
-//        observeChangesInDB()
+        prepareRecyclerView()
+        showAPIData()
+        observeChangesInDB()
         setClickListeners()
     }
 
@@ -108,6 +109,11 @@ class HomeActivity : AppCompatActivity() {
             when (movieData) {
                 is ResponseSealedClass.Success -> {
                     val movieModel: MovieModel = movieData.data as MovieModel
+                    movieAdapter = MovieAdapter()
+                    binding.rvMovies.apply {
+                        layoutManager = LinearLayoutManager(applicationContext)
+                        adapter = movieAdapter
+                    }
                     movieAdapter.setMovieList(movieModel.results as List<MovieResult>)
                     lifecycleScope.launch(Dispatchers.IO) {
                         DBHelper.insertMovieModel(
@@ -129,10 +135,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun prepareRecyclerView() {
-        movieAdapter = MovieAdapter()
-        binding.rvMovies.apply {
-            layoutManager = GridLayoutManager(applicationContext, 2)
+        /*movieAdapter = MovieAdapter()*/
+        /*binding.rvMovies.apply {
+            layoutManager = GridLayoutManager(applicationContext, 1)
             adapter = movieAdapter
-        }
+        }*/
     }
 }

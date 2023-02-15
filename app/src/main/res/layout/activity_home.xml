@@ -28,7 +28,6 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movies"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_20sdp"
@@ -37,6 +36,7 @@
             tools:listitem="@layout/movie_layout" />
 
         <FrameLayout
+            android:visibility="gone"
             android:id="@+id/frame_layout"
             android:background="@android:color/holo_orange_dark"
             android:layout_width="match_parent"
